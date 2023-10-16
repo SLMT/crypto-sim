@@ -1,3 +1,11 @@
+use cli::Cli;
+
+mod cli;
+
 fn main() {
-    println!("Hello, world!");
+    let mut cli = Cli::new();
+
+    if let Err(message) = cli.run() {
+        panic!("Error: {}", message);
+    }
 }
