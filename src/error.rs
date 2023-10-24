@@ -2,7 +2,7 @@ use thiserror::Error;
 
 pub type SimResult<T> = Result<T, SimError>;
 
-#[derive(Error, Debug)]
+#[derive(Error, Debug, PartialEq)]
 pub enum SimError {
     #[error("the field {0} for building option is not set")]
     OptionFieldNotSet(String),

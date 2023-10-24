@@ -5,13 +5,13 @@ use rust_decimal::Decimal;
 
 use crate::error::{SimError, SimResult};
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum OptionType {
     Call,
     Put,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct CryptoOption {
     pub base_coin: String,
     pub expiration_date: DateTime<Local>,
@@ -67,5 +67,32 @@ impl CryptoOptionBuilder {
                 .option_type
                 .ok_or(SimError::option_field_not_set("option_type"))?,
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_builder() {
+        let builder = CryptoOptionBuilder::new();
+        let exp = Local::now();
+        let price = Decimal::new(2000, 0);
+        let option = builder
+            .base_coin("ETH".to_owned())
+            .expiration_date(exp)
+            .strike_price(price)
+            .option_type(OptionType::Call)
+            .build();
+        assert_eq!(
+            option,
+            Ok(CryptoOption {
+                base_coin: "ETH".to_owned(),
+                expiration_date: exp,
+                strike_price: price,
+                option_type: OptionType::Call
+            })
+        );
     }
 }
