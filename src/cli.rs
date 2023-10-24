@@ -15,7 +15,7 @@ impl Cli {
         todo!()
     }
 
-    pub fn select_action(&mut self) -> Result<usize, String> {
+    fn select_action(&mut self) -> Result<usize, String> {
         let items = vec!["Create Portfolio", "List Portfolios", "Show Portfolio"];
 
         let selection = Select::new()
@@ -25,5 +25,9 @@ impl Cli {
             .map_err(|e| e.to_string())?;
 
         Ok(selection)
+    }
+
+    fn create_portfolio(&mut self) {
+        todo!()
     }
 }

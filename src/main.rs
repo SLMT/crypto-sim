@@ -3,6 +3,7 @@ use cli::Cli;
 mod cli;
 mod error;
 mod option;
+mod portofolio;
 
 fn main() {
     let mut cli = Cli::new();
