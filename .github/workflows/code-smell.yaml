@@ -1,4 +1,4 @@
-name: Quality Check
+name: Code Smell
 
 on:
   push:
