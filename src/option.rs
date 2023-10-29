@@ -5,13 +5,13 @@ use rust_decimal::Decimal;
 
 use crate::error::{SimError, SimResult};
 
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, Hash, Clone, Copy)]
 pub enum OptionType {
     Call,
     Put,
 }
 
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, Hash, Clone)]
 pub struct CryptoOption {
     pub base_coin: String,
     pub expiration_date: DateTime<Local>,
